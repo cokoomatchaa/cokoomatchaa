@@ -1,125 +1,182 @@
-<!DOCTYPE html><html lang="id">
+<!DOCTYPE html>
+<html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>COKOMATCHAA</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CokooMatchaa Dashboard</title>
   <style>
     body {
+      font-family: 'Segoe UI', sans-serif;
       margin: 0;
       padding: 0;
-      font-family: Arial, sans-serif;
-      background-color: #87ceeb; /* biru muda agak gelap */
+      background-color: #6fb3e0; /* biru muda agak gelap */
+      color: #333;
+      transition: background 0.3s, color 0.3s;
+    }
+    .dark-mode {
+      background: #121212;
+      color: #fff;
+    }
+    header {
+      background-color: #1e88e5;
       color: white;
-      overflow-x: hidden;
-    }.hamburger-container {
-  position: fixed;
-  top: 10px;
-  left: 10px;
-  z-index: 1000;
-}
-
-#hamburgerBtn {
-  font-size: 24px;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  color: white;
-}
-
-.menu {
-  margin-top: 8px;
-  display: flex;
-  flex-direction: column;
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  overflow: hidden;
-  transition: max-height 0.3s ease-in-out;
-  position: absolute;
-  top: 40px;
-  left: 0;
-}
-
-.menu a {
-  padding: 12px 16px;
-  text-decoration: none;
-  color: #333;
-  border-bottom: 1px solid #eee;
-}
-
-.menu a:hover {
-  background-color: #f0f0f0;
-}
-
-.hidden {
-  display: none;
-}
-
-.content {
-  padding: 20px;
-  text-align: center;
-}
-
+      padding: 1rem;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    nav {
+      display: none;
+      flex-direction: column;
+      background-color: #f8f8f8;
+      padding: 10px;
+      position: absolute;
+      top: 60px;
+      left: 10px;
+      z-index: 9;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      opacity: 0;
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: all 0.3s ease-in-out;
+    }
+    nav.show {
+      display: flex;
+      opacity: 1;
+      transform: scaleY(1);
+    }
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      padding: 10px;
+    }
+    .menu-toggle {
+      display: flex;
+      justify-content: flex-start;
+      padding: 10px;
+      background-color: #f0f0f0;
+    }
+    .hamburger {
+      cursor: pointer;
+      font-size: 24px;
+      background: none;
+      border: none;
+    }
+    .section {
+      max-width: 600px;
+      margin: 20px auto;
+      background: white;
+      padding: 15px;
+      border-radius: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .toggle-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #222;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+    .hidden {
+      display: none;
+    }
   </style>
 </head>
 <body>
-  <div class="hamburger-container">
-    <button id="hamburgerBtn">☰</button>
-    <div id="menuList" class="menu hidden">
-      <a href="#">Home</a>
-      <a href="#">Profil</a>
-      <a href="#">Pengaturan</a>
-      <a href="#">Tentang</a>
-    </div>
-  </div>  <div class="content">
-    <h1>Selamat datang di COKOMATCHAA</h1>
-    <p id="visitor-count">Pengunjung: menghitung...</p>
+
+<header>
+  <h1>Welcome to CokooMatchaa</h1>
+</header>
+
+<div class="menu-toggle">
+  <button class="hamburger" onclick="toggleMenu()">☰</button>
+</div>
+
+<nav id="mainMenu">
+  <a href="#" onclick="showSection('home')">Home</a>
+  <a href="#" onclick="showSection('profile')">Profil</a>
+  <a href="#" onclick="showSection('pengaturan')">Pengaturan</a>
+</nav>
+
+<div id="home" class="section visible">
+  <div id="notif">📢 Info: Website ini sedang dalam pengembangan. Terima kasih sudah berkunjung!</div>
+
+  <div id="stats">
+    <h2>Statistik</h2>
+    <p>Pengunjung: <img src="https://visitor-badge.glitch.me/badge?page_id=cokoomatchaa.github.io" alt="visitor badge"></p>
+  </div>
+
+  <div id="calendar">
+    <h2>Kalender</h2>
+    <input type="date">
+  </div>
+
+  <div id="quote">
+    🌟 "Jangan menunggu waktu yang sempurna, karena waktu tidak akan pernah sempurna."
+  </div>
+
+  <div id="music">
+    <h2>Musik</h2>
     <audio controls autoplay loop>
       <source src="https://files.catbox.moe/ywgfth.mp3" type="audio/mpeg">
-      Browser Anda tidak mendukung pemutar audio.
+      Browser tidak support audio.
     </audio>
-  </div>  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import { getFirestore, doc, getDoc, setDoc, updateDoc, increment } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+  </div>
+</div>
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyD5hBQN91Ji_FL-w-Rbdl_kzzy922m1QG0",
-      authDomain: "cokoomatchaa.firebaseapp.com",
-      projectId: "cokoomatchaa",
-      storageBucket: "cokoomatchaa.firebasestorage.app",
-      messagingSenderId: "343230496402",
-      appId: "1:343230496402:web:2ba794889f0ca89afbb04b",
-      measurementId: "G-8WNMZ2ZLDS"
-    };
+<div id="profile" class="section hidden">
+  <h2>Profil Kamu</h2>
+  <img src="https://via.placeholder.com/100" alt="foto profil" style="border-radius: 50%;">
+  <p>Nama: Cokoo User</p>
+</div>
 
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
+<div id="pengaturan" class="section hidden">
+  <h2>Pengaturan</h2>
+  <p>Di sini kamu bisa mengatur preferensi kamu.</p>
+</div>
 
-    const counterRef = doc(db, "statistik", "pengunjung");
+<button class="toggle-btn" onclick="toggleMode()">🌓 Ganti Mode</button>
 
-    getDoc(counterRef)
-      .then((docSnap) => {
-        if (docSnap.exists()) {
-          return updateDoc(counterRef, { jumlah: increment(1) });
-        } else {
-          return setDoc(counterRef, { jumlah: 1 });
-        }
-      })
-      .then(() => getDoc(counterRef))
-      .then((updatedSnap) => {
-        const data = updatedSnap.data();
-        document.getElementById("visitor-count").textContent = `Pengunjung: ${data.jumlah}`;
-      })
-      .catch((error) => {
-        console.error("Gagal menghitung pengunjung:", error);
-        document.getElementById("visitor-count").textContent = "Pengunjung: Gagal memuat.";
-      });
-  </script>  <script>
-    const hamburgerBtn = document.getElementById('hamburgerBtn');
-    const menuList = document.getElementById('menuList');
+<script>
+  function toggleMode() {
+    document.body.classList.toggle("dark-mode");
+  }
 
-    hamburgerBtn.addEventListener('click', () => {
-      menuList.classList.toggle('hidden');
+  function showSection(id) {
+    const allSections = document.querySelectorAll('.section');
+    allSections.forEach(sec => {
+      sec.classList.remove('visible');
+      sec.classList.add('hidden');
     });
-  </script></body>
+    const section = document.getElementById(id);
+    section.classList.remove('hidden');
+    setTimeout(() => section.classList.add('visible'), 50);
+    document.getElementById("mainMenu").classList.remove("show");
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function toggleMenu() {
+    const menu = document.getElementById("mainMenu");
+    menu.classList.toggle("show");
+  }
+
+  // Tampilkan home saat pertama kali dibuka
+  showSection('home');
+</script>
+
+</body>
 </html>
