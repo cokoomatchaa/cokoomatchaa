@@ -38,7 +38,7 @@
       font-weight: bold;
       cursor: pointer;
     }
-    #profile, #stats, #notif, #quote, #music, #upload-form, #calendar {
+    .section {
       max-width: 600px;
       margin: 20px auto;
       background: white;
@@ -57,7 +57,7 @@
       border-radius: 12px;
       cursor: pointer;
     }
-    #profile {
+    .hidden {
       display: none;
     }
   </style>
@@ -67,34 +67,35 @@
 </header><nav>
   <a href="#" onclick="showSection('home')">Beranda</a>
   <a href="#" onclick="showSection('profile')">Profil</a>
-  <a href="#">Pengaturan</a>
-  <a href="#">Logout</a>
-</nav><div id="notif">📢 Info: Website ini sedang dalam pengembangan. Terima kasih sudah berkunjung!</div><div id="profile">
+  <a href="#" onclick="showSection('pengaturan')">Pengaturan</a>
+  <a href="#" onclick="showSection('logout')">Logout</a>
+</nav><div id="home" class="section">
+  <div id="notif">📢 Info: Website ini sedang dalam pengembangan. Terima kasih sudah berkunjung!</div>  <div id="stats">
+    <h2>Statistik</h2>
+    <p>Pengunjung: <img src="https://visitor-badge.glitch.me/badge?page_id=cokoomatchaa.github.io" alt="visitor badge"></p>
+  </div>  <div id="upload-form">
+    <h2>Upload File</h2>
+    <form>
+      <input type="file">
+      <button type="submit">Kirim</button>
+    </form>
+  </div>  <div id="calendar">
+    <h2>Kalender</h2>
+    <input type="date">
+  </div>  <div id="quote">
+    🌟 "Jangan menunggu waktu yang sempurna, karena waktu tidak akan pernah sempurna."
+  </div>  <div id="music">
+    <h2>Musik</h2>
+    <audio controls autoplay loop>
+      <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+      Browser tidak support audio.
+    </audio>
+  </div>
+</div><div id="profile" class="section hidden">
   <h2>Profil Kamu</h2>
   <img src="https://via.placeholder.com/100" alt="foto profil" style="border-radius: 50%;">
   <p>Nama: Cokoo User</p>
   <p>Email: contoh@email.com</p>
-</div><div id="stats">
-  <h2>Statistik</h2>
-  <p>Pengunjung Hari Ini: 42</p>
-  <p>Total Pengguna: 1.298</p>
-</div><div id="upload-form">
-  <h2>Upload File</h2>
-  <form>
-    <input type="file">
-    <button type="submit">Kirim</button>
-  </form>
-</div><div id="calendar">
-  <h2>Kalender</h2>
-  <input type="date">
-</div><div id="quote">
-  🌟 "Jangan menunggu waktu yang sempurna, karena waktu tidak akan pernah sempurna."
-</div><div id="music">
-  <h2>Musik</h2>
-  <audio controls autoplay loop>
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-    Browser tidak support audio.
-  </audio>
 </div><button class="toggle-btn" onclick="toggleMode()">🌓 Ganti Mode</button>
 
 <script>
@@ -103,12 +104,13 @@
   }
 
   function showSection(id) {
-    const sections = ['profile'];
-    sections.forEach(s => {
-      document.getElementById(s).style.display = 'none';
-    });
-    document.getElementById(id).style.display = 'block';
+    const allSections = document.querySelectorAll('.section');
+    allSections.forEach(sec => sec.classList.add('hidden'));
+    document.getElementById(id).classList.remove('hidden');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+
+  // Tampilkan home saat pertama kali dibuka
+  showSection('home');
 </script></body>
 </html>
