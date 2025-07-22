@@ -1,167 +1,124 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login SMK Pelita</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CokooMatchaa Dashboard</title>
   <style>
     body {
+      font-family: 'Segoe UI', sans-serif;
       margin: 0;
       padding: 0;
-      font-family: Arial, sans-serif;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(-45deg, #dbeafe, #fce7f3, #e0f2fe, #fef9c3);
-      background-size: 400% 400%;
-      animation: gradient 15s ease infinite;
+      background: linear-gradient(to bottom right, #ffc0cb, #add8e6, #f0f0f0);
+      color: #333;
+      transition: background 0.3s, color 0.3s;
     }
-
-    @keyframes gradient {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    .dark-mode {
+      background: #121212;
+      color: #fff;
     }
-
-    .centered {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-
-    .box {
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    header {
+      background-color: #ff69b4;
+      color: white;
+      padding: 1rem;
       text-align: center;
-      display: none;
-      background-color: white;
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
-
-    input {
-      display: block;
-      width: 100%;
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      background-color: #f8f8f8;
       padding: 10px;
-      margin: 10px 0;
-      border-radius: 5px;
-      border: 1px solid #ccc;
     }
-
-    button {
-      background-color: #007bff;
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+    #profile, #stats, #notif, #quote, #music, #upload-form, #calendar {
+      max-width: 600px;
+      margin: 20px auto;
+      background: white;
+      padding: 15px;
+      border-radius: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .toggle-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #222;
       color: white;
       border: none;
-      padding: 10px 20px;
-      border-radius: 20px;
+      padding: 10px 15px;
+      border-radius: 12px;
       cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #0056b3;
-    }
-
-    .copyright {
-      margin-top: 10px;
-      font-size: 12px;
-      color: gray;
-    }
-
-    /* Dashboard Styles */
-    #dashboardBox {
-      display: none;
-      height: 100vh;
-      background-color: #f2f2f2;
-      padding: 0;
-    }
-
-    .navbar {
-      background-color: #007bff;
-      color: white;
-      padding: 15px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .burger {
-      font-size: 24px;
-      cursor: pointer;
-    }
-
-    .menu {
-      display: none;
-      background-color: #eee;
-      padding: 10px;
-      text-align: left;
-    }
-
-    .menu a {
-      display: block;
-      margin: 8px 0;
-      text-decoration: none;
-      color: #007bff;
-    }
-
-    .content {
-      padding: 30px;
     }
   </style>
 </head>
 <body>
 
-  <!-- Login Box -->
-  <div class="centered" id="loginContainer">
-    <div class="box" id="loginBox" style="display: block;">
-      <h2>Login SMK Pelita</h2>
-      <input type="text" id="username" placeholder="Username" />
-      <input type="password" id="password" placeholder="Password" />
-      <button onclick="login()">Login</button>
-      <p class="copyright">Copyright © SMK Pelita 2022</p>
-    </div>
-  </div>
+<header>
+  <h1>Welcome to CokooMatchaa</h1>
+</header>
 
-  <!-- Dashboard Box -->
-  <div id="dashboardBox">
-    <div class="navbar">
-      <div><strong>Dashboard</strong></div>
-      <div class="burger" onclick="toggleMenu()">☰</div>
-    </div>
-    <div class="menu" id="menu">
-      <a href="#">Beranda</a>
-      <a href="#">Profil</a>
-      <a href="#">Pengaturan</a>
-      <a href="#" onclick="logout()">Logout</a>
-    </div>
-    <div class="content">
-      <h1>Selamat Datang, COKOMATCHA!</h1>
-      <p>Ini adalah halaman dashboard setelah login berhasil.</p>
-    </div>
-  </div>
+<nav>
+  <a href="#">Beranda</a>
+  <a href="#">Profil</a>
+  <a href="#">Pengaturan</a>
+  <a href="#">Logout</a>
+</nav>
 
-  <script>
-    function login() {
-      const user = document.getElementById("username").value;
-      const pass = document.getElementById("password").value;
+<div id="notif">📢 Info: Website ini sedang dalam pengembangan. Terima kasih sudah berkunjung!</div>
 
-      if (user === "COKOMATCHA" && pass === "COKOMATCHA") {
-        document.getElementById("loginContainer").style.display = "none";
-        document.getElementById("dashboardBox").style.display = "block";
-        document.body.style.display = "block";
-      } else {
-        alert("Username atau Password salah!");
-      }
-    }
+<div id="profile">
+  <h2>Profil Kamu</h2>
+  <img src="https://via.placeholder.com/100" alt="foto profil" style="border-radius: 50%;">
+  <p>Nama: Cokoo User</p>
+  <p>Email: contoh@email.com</p>
+</div>
 
-    function toggleMenu() {
-      const menu = document.getElementById("menu");
-      menu.style.display = menu.style.display === "block" ? "none" : "block";
-    }
+<div id="stats">
+  <h2>Statistik</h2>
+  <p>Pengunjung Hari Ini: 42</p>
+  <p>Total Pengguna: 1.298</p>
+</div>
 
-    function logout() {
-      location.reload(); // kembali ke form login
-    }
-  </script>
+<div id="upload-form">
+  <h2>Upload File</h2>
+  <form>
+    <input type="file">
+    <button type="submit">Kirim</button>
+  </form>
+</div>
+
+<div id="calendar">
+  <h2>Kalender</h2>
+  <input type="date">
+</div>
+
+<div id="quote">
+  🌟 "Jangan menunggu waktu yang sempurna, karena waktu tidak akan pernah sempurna."
+</div>
+
+<div id="music">
+  <h2>Musik</h2>
+  <audio controls autoplay loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    Browser tidak support audio.
+  </audio>
+</div>
+
+<button class="toggle-btn" onclick="toggleMode()">🌓 Ganti Mode</button>
+
+<script>
+  function toggleMode() {
+    document.body.classList.toggle("dark-mode");
+  }
+</script>
+
 </body>
 </html>
