@@ -8,7 +8,7 @@
       font-family: 'Segoe UI', sans-serif;
       margin: 0;
       padding: 0;
-      background: linear-gradient(to bottom right, #ffc0cb, #add8e6, #f0f0f0);
+      background-color: #6fb3e0; /* biru muda agak gelap */
       color: #333;
       transition: background 0.3s, color 0.3s;
     }
@@ -17,7 +17,7 @@
       color: #fff;
     }
     header {
-      background-color: #ff69b4;
+      background-color: #1e88e5;
       color: white;
       padding: 1rem;
       text-align: center;
@@ -26,17 +26,33 @@
       z-index: 10;
     }
     nav {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
+      display: none;
+      flex-direction: column;
       background-color: #f8f8f8;
       padding: 10px;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      right: 0;
+      z-index: 9;
     }
     nav a {
       text-decoration: none;
       color: #333;
       font-weight: bold;
+      padding: 10px;
+    }
+    .menu-toggle {
+      display: flex;
+      justify-content: flex-end;
+      padding: 10px;
+      background-color: #f0f0f0;
+    }
+    .hamburger {
       cursor: pointer;
+      font-size: 24px;
+      background: none;
+      border: none;
     }
     .section {
       max-width: 600px;
@@ -64,7 +80,9 @@
 </head>
 <body><header>
   <h1>Welcome to CokooMatchaa</h1>
-</header><nav>
+</header><div class="menu-toggle">
+  <button class="hamburger" onclick="toggleMenu()">☰</button>
+</div><nav id="mainMenu">
   <a href="#" onclick="showSection('home')">Beranda</a>
   <a href="#" onclick="showSection('profile')">Profil</a>
   <a href="#" onclick="showSection('pengaturan')">Pengaturan</a>
@@ -73,12 +91,6 @@
   <div id="notif">📢 Info: Website ini sedang dalam pengembangan. Terima kasih sudah berkunjung!</div>  <div id="stats">
     <h2>Statistik</h2>
     <p>Pengunjung: <img src="https://visitor-badge.glitch.me/badge?page_id=cokoomatchaa.github.io" alt="visitor badge"></p>
-  </div>  <div id="upload-form">
-    <h2>Upload File</h2>
-    <form>
-      <input type="file">
-      <button type="submit">Kirim</button>
-    </form>
   </div>  <div id="calendar">
     <h2>Kalender</h2>
     <input type="date">
@@ -95,7 +107,12 @@
   <h2>Profil Kamu</h2>
   <img src="https://via.placeholder.com/100" alt="foto profil" style="border-radius: 50%;">
   <p>Nama: Cokoo User</p>
-  <p>Email: contoh@email.com</p>
+</div><div id="pengaturan" class="section hidden">
+  <h2>Pengaturan</h2>
+  <p>Di sini kamu bisa mengatur preferensi kamu.</p>
+</div><div id="logout" class="section hidden">
+  <h2>Logout</h2>
+  <p>Kamu telah keluar dari akun.</p>
 </div><button class="toggle-btn" onclick="toggleMode()">🌓 Ganti Mode</button>
 
 <script>
@@ -107,7 +124,13 @@
     const allSections = document.querySelectorAll('.section');
     allSections.forEach(sec => sec.classList.add('hidden'));
     document.getElementById(id).classList.remove('hidden');
+    document.getElementById("mainMenu").style.display = "none";
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function toggleMenu() {
+    const menu = document.getElementById("mainMenu");
+    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
   }
 
   // Tampilkan home saat pertama kali dibuka
