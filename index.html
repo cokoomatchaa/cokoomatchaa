@@ -1,208 +1,116 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CokooMatchaa Dashboard</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
       margin: 0;
-      padding: 0;
-      background-color: #6fb3e0;
-      color: #333;
-      transition: background 0.3s, color 0.3s;
-    }
-
-    .dark-mode {
-      background: #121212;
-      color: #fff;
-    }
-
-    .bg-banner {
-      width: 100%;
-      height: 250px;
-      background-image: url('https://files.catbox.moe/27eeki.jpg');
-      background-size: cover;
-      background-position: center;
-      position: relative;
-    }
-
-    .bg-banner::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 80px;
-      background: linear-gradient(to bottom, rgba(255,255,255,0), #6fb3e0);
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #7CC6FE;
     }
 
     header {
-      background-color: #1e88e5;
+      background-color: #003366;
       color: white;
-      padding: 1rem;
-      text-align: center;
-      position: sticky;
-      top: 0;
-      z-index: 2;
-    }
-
-    .menu-toggle {
+      padding: 10px 20px;
       display: flex;
-      justify-content: flex-start;
-      padding: 10px;
-      background-color: #f0f0f0;
+      align-items: center;
+      justify-content: space-between;
       position: relative;
-      z-index: 3;
     }
 
-    .hamburger {
-      cursor: pointer;
+    .menu-icon {
       font-size: 24px;
+      cursor: pointer;
       background: none;
       border: none;
+      color: white;
     }
 
-    nav {
+    .menu-dropdown {
       display: none;
       flex-direction: column;
-      background-color: #f8f8f8;
-      padding: 10px;
       position: absolute;
-      top: 60px;
+      top: 60px; /* di bawah header */
       left: 10px;
-      z-index: 3;
+      background-color: white;
       border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-
-    nav.show {
-      display: flex;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: #333;
-      font-weight: bold;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
       padding: 10px;
+      z-index: 99;
     }
 
-    .section {
-      max-width: 600px;
-      margin: 20px auto;
+    .menu-dropdown a {
+      padding: 8px;
+      text-decoration: none;
+      color: black;
+      font-weight: 500;
+    }
+
+    .menu-dropdown a:hover {
+      background-color: #f0f0f0;
+    }
+
+    .content {
+      padding: 20px;
+    }
+
+    .card {
       background: white;
+      border-radius: 10px;
       padding: 15px;
-      border-radius: 20px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-      position: relative;
-      z-index: 1;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      max-width: 600px;
+      margin: auto;
     }
 
-    .section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .toggle-btn {
+    .toggle-mode {
       position: fixed;
       bottom: 20px;
       right: 20px;
-      background: #222;
+      background: black;
       color: white;
-      border: none;
       padding: 10px 15px;
-      border-radius: 12px;
+      border-radius: 10px;
+      font-size: 12px;
+      border: none;
       cursor: pointer;
-      z-index: 3;
-    }
-
-    .hidden {
-      display: none;
     }
   </style>
 </head>
 <body>
-
-  <div class="bg-banner"></div>
-
   <header>
-    <h1>Welcome to CokooMatchaa</h1>
+    <button class="menu-icon" onclick="toggleMenu()">☰</button>
+    <div style="width: 30px;"></div>
+    <div class="menu-dropdown" id="dropdownMenu">
+      <a href="#">Beranda</a>
+      <a href="#">Tentang</a>
+      <a href="#">Kontak</a>
+    </div>
   </header>
 
-  <div class="menu-toggle">
-    <button class="hamburger" onclick="toggleMenu()">☰</button>
-  </div>
+  <div class="content">
+    <div class="card">
+      <p>📢 Info: Website ini sedang dalam pengembangan. Terima kasih sudah berkunjung!</p>
+      <p>🌟 "Jangan menunggu waktu yang sempurna, karena waktu tidak akan pernah sempurna."</p>
 
-  <nav id="mainMenu">
-    <a href="#" onclick="showSection('home')">Home</a>
-    <a href="#" onclick="showSection('profile')">Profil</a>
-    <a href="#" onclick="showSection('pengaturan')">Pengaturan</a>
-  </nav>
-
-  <!-- Bagian Konten -->
-  <div id="home" class="section visible">
-    <div id="notif">📢 Info: Website ini sedang dalam pengembangan. Terima kasih sudah berkunjung!</div>
-
-    <div id="calendar">
-      <h2>Kalender</h2>
-      <input type="date">
-    </div>
-
-    <div id="quote">
-      🌟 "Jangan menunggu waktu yang sempurna, karena waktu tidak akan pernah sempurna."
-    </div>
-
-    <div id="music">
-      <h2>Musik</h2>
-      <audio controls autoplay loop>
-        <source src="https://files.catbox.moe/ywgfth.mp3" type="audio/mpeg">
-        Browser tidak support audio.
+      <h3>Musik</h3>
+      <audio controls>
+        <source src="musik.mp3" type="audio/mp3">
+        Browser Anda tidak mendukung audio.
       </audio>
     </div>
   </div>
 
-  <div id="profile" class="section hidden">
-    <h2>Profil Kamu</h2>
-    <img src="https://via.placeholder.com/100" alt="foto profil" style="border-radius: 50%;">
-    <p>Nama: Cokoo User</p>
-  </div>
-
-  <div id="pengaturan" class="section hidden">
-    <h2>Pengaturan</h2>
-    <p>Di sini kamu bisa mengatur preferensi kamu.</p>
-  </div>
-
-  <button class="toggle-btn" onclick="toggleMode()">🌓 Ganti Mode</button>
+  <button class="toggle-mode">🌗 Ganti Mode</button>
 
   <script>
-    function toggleMode() {
-      document.body.classList.toggle("dark-mode");
-    }
-
-    function showSection(id) {
-      const allSections = document.querySelectorAll('.section');
-      allSections.forEach(sec => {
-        sec.classList.remove('visible');
-        sec.classList.add('hidden');
-      });
-      const section = document.getElementById(id);
-      section.classList.remove('hidden');
-      setTimeout(() => section.classList.add('visible'), 50);
-      document.getElementById("mainMenu").classList.remove("show");
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
     function toggleMenu() {
-      const menu = document.getElementById("mainMenu");
-      menu.classList.toggle("show");
+      const menu = document.getElementById('dropdownMenu');
+      menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
     }
-
-    // Tampilkan home saat pertama kali dibuka
-    showSection('home');
   </script>
 </body>
 </html>
