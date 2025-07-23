@@ -11,6 +11,7 @@
       background-color: #7CC6FE;
     }
 
+    /* Bagian Header Menu */
     header {
       background-color: #003366;
       color: white;
@@ -82,9 +83,20 @@
 </head>
 <body>
 
-  <!-- Tambahkan Gambar Header Di Sini -->
-  <img src="https://raw.githubusercontent.com/cokoomatchaa/cokoo/main/assets/header-banner.jpg" alt="Banner CokooMatchaa" style="width: 100%; display: block;">
+  <!-- ✅ Banner Karakter & Judul -->
+  <div style="background: linear-gradient(to right, #f9f9f9, #dbeeff); padding: 20px; text-align: center;">
+    <h2 style="color: navy; font-family: 'Segoe UI', sans-serif;">Wellcome To CokooMatchaa</h2>
+    <div style="display: flex; align-items: center; justify-content: center; gap: 20px;">
+      <img src="https://raw.githubusercontent.com/cokoomatchaa/cokoo/main/assets/laki-laki.png" alt="Karakter Laki-Laki" style="height: 100px;">
+      <div>
+        <button style="background-color: gold; border: none; padding: 10px 20px; font-size: 18px; font-weight: bold;">COKOMATCHA</button>
+        <p style="margin: 5px 0; font-size: 14px;">TANGGAL PENERBITAN 04/04/2025</p>
+      </div>
+      <img src="https://raw.githubusercontent.com/cokoomatchaa/cokoo/main/assets/perempuan.png" alt="Karakter Perempuan" style="height: 100px;">
+    </div>
+  </div>
 
+  <!-- Menu Navigasi -->
   <header>
     <button class="menu-icon" onclick="toggleMenu()">☰</button>
     <div style="width: 30px;"></div>
@@ -95,6 +107,7 @@
     </div>
   </header>
 
+  <!-- Konten Utama -->
   <div class="content">
     <div class="card">
       <p>📢 Info: Website ini sedang dalam pengembangan. Terima kasih sudah berkunjung!</p>
