@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>CokooMatchaa Dashboard</title>
   <style>
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to bottom, #ffffff 0%, #ffffff 50%, #7CC6FE 50%, #7CC6FE 100%);
     }
 
-    .bg-atas {
+    .bg-setengah {
+      height: 50vh;
       background: url('https://files.catbox.moe/27eeki.jpg') no-repeat center center;
       background-size: cover;
-      height: 50vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -24,8 +23,14 @@
       padding: 20px;
     }
 
-    .bg-atas img {
+    .bg-setengah img {
       height: 100px;
+    }
+
+    .setengah-bawah {
+      background-color: #7CC6FE;
+      min-height: 50vh;
+      padding: 20px;
     }
 
     header {
@@ -70,10 +75,6 @@
       background-color: #f0f0f0;
     }
 
-    .content {
-      padding: 20px;
-    }
-
     .card {
       background: white;
       border-radius: 10px;
@@ -99,8 +100,8 @@
 </head>
 <body>
 
-  <!-- ✅ Bagian Background Gambar (Setengah Atas) -->
-  <div class="bg-atas">
+  <!-- ✅ Bagian Atas dengan Gambar (Setengah Background) -->
+  <div class="bg-setengah">
     <h2 style="color: navy;">Wellcome To CokooMatchaa</h2>
     <div style="display: flex; align-items: center; justify-content: center; gap: 20px;">
       <img src="https://raw.githubusercontent.com/cokoomatchaa/cokoo/main/assets/laki-laki.png" alt="Karakter Laki-Laki">
@@ -112,7 +113,7 @@
     </div>
   </div>
 
-  <!-- Menu Navigasi -->
+  <!-- ✅ Header dengan Tombol Hamburger -->
   <header>
     <button class="menu-icon" onclick="toggleMenu()">☰</button>
     <div style="width: 30px;"></div>
@@ -123,8 +124,8 @@
     </div>
   </header>
 
-  <!-- Konten Utama -->
-  <div class="content">
+  <!-- ✅ Bagian Bawah dengan Background Biru -->
+  <div class="setengah-bawah">
     <div class="card">
       <p>📢 Info: Website ini sedang dalam pengembangan. Terima kasih sudah berkunjung!</p>
       <p>🌟 "Jangan menunggu waktu yang sempurna, karena waktu tidak akan pernah sempurna."</p>
@@ -145,5 +146,6 @@
       menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
     }
   </script>
+
 </body>
-    </html>
+</html>
