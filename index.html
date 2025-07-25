@@ -1,36 +1,14 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CokooMatchaa Dashboard</title>
   <style>
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-    }
-
-    .bg-setengah {
-      height: 50vh;
-      background: url('https://files.catbox.moe/27eeki.jpg') no-repeat center center;
-      background-size: cover;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      color: navy;
-      padding: 20px;
-    }
-
-    .bg-setengah img {
-      height: 100px;
-    }
-
-    .setengah-bawah {
       background-color: #7CC6FE;
-      min-height: 50vh;
-      padding: 20px;
     }
 
     header {
@@ -55,7 +33,7 @@
       display: none;
       flex-direction: column;
       position: absolute;
-      top: 60px;
+      top: 60px; /* Di bawah header */
       left: 10px;
       background-color: white;
       border-radius: 8px;
@@ -73,6 +51,10 @@
 
     .menu-dropdown a:hover {
       background-color: #f0f0f0;
+    }
+
+    .content {
+      padding: 20px;
     }
 
     .card {
@@ -99,23 +81,10 @@
   </style>
 </head>
 <body>
-
-  <!-- ✅ Bagian Atas dengan Gambar (Setengah Background) -->
-  <div class="bg-setengah">
-    <h2 style="color: navy;">Wellcome To CokooMatchaa</h2>
-    <div style="display: flex; align-items: center; justify-content: center; gap: 20px;">
-      <img src="https://raw.githubusercontent.com/cokoomatchaa/cokoo/main/assets/laki-laki.png" alt="Karakter Laki-Laki">
-      <div>
-        <button style="background-color: gold; border: none; padding: 10px 20px; font-size: 18px; font-weight: bold;">COKOMATCHA</button>
-        <p style="margin: 5px 0; font-size: 14px;">TANGGAL PENERBITAN 04/04/2025</p>
-      </div>
-      <img src="https://raw.githubusercontent.com/cokoomatchaa/cokoo/main/assets/perempuan.png" alt="Karakter Perempuan">
-    </div>
-  </div>
-
-  <!-- ✅ Header dengan Tombol Hamburger -->
   <header>
     <button class="menu-icon" onclick="toggleMenu()">☰</button>
+    <h2 style="margin: 0;">Welcome to CokooMatchaa</h2>
+    <!-- Kosong di kanan biar seimbang -->
     <div style="width: 30px;"></div>
     <div class="menu-dropdown" id="dropdownMenu">
       <a href="#">Beranda</a>
@@ -124,10 +93,12 @@
     </div>
   </header>
 
-  <!-- ✅ Bagian Bawah dengan Background Biru -->
-  <div class="setengah-bawah">
+  <div class="content">
     <div class="card">
       <p>📢 Info: Website ini sedang dalam pengembangan. Terima kasih sudah berkunjung!</p>
+
+      <h3>Kalender</h3>
+      <select></select>
       <p>🌟 "Jangan menunggu waktu yang sempurna, karena waktu tidak akan pernah sempurna."</p>
 
       <h3>Musik</h3>
@@ -146,6 +117,5 @@
       menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
     }
   </script>
-
 </body>
 </html>
